@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
 
+class RenderWindow;
 class Layer
 {
 public:
 	Layer(const std::string& name = "Layer");
 	virtual ~Layer();
 
-	virtual void OnAttach() {}
+	virtual void OnAttach(RenderWindow* renderer) {}
 	virtual void OnDetach() {}
 	virtual void OnUpdate() {}
 

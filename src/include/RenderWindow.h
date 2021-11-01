@@ -17,6 +17,9 @@ public:
 	void PushOverlay(Layer* layer);
 	void Update();
 
+	inline SDL_Window* GetWindow() { return window; }
+	inline SDL_GLContext& GetContext() { return context; }
+
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;

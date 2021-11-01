@@ -16,6 +16,7 @@ bool Core::Init()
 	// Also request a depth buffer
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
 	m_Window = new RenderWindow("Test Game V0.1", 1280, 720);
 
@@ -39,6 +40,8 @@ bool Core::Init()
 	LOG_INFO("Vendor:   " + std::string((char *)glGetString(GL_VENDOR)));
 	LOG_INFO("Renderer: " + std::string((char *)glGetString(GL_RENDERER)));
 	LOG_INFO("Version:  " + std::string((char *)glGetString(GL_VERSION)));
+
+	m_Window->PushOverlay(new ImGuiLayer());
 
 	return m_IsRunning;
 }

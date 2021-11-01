@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "Utility/Log.h"
+#include "ImGuiLayer.h"
 
 
 class RenderWindow;
