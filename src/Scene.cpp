@@ -18,15 +18,15 @@ Entity Scene::CreateEntity(const std::string& name)
 
 void Scene::RenderSprites(RenderWindow* renderer)
 {
-	renderer->clear();
+	renderer->Clear();
 	auto view = m_Registry.view<SpriteRendererComponent>();
 	for (auto sprites : view)
 	{
 		SpriteRendererComponent& sprite = view.get<SpriteRendererComponent>(sprites);
-		renderer->render(sprite.texture);
+		renderer->Render(sprite.texture);
 	}
 
-	renderer->display();
+	renderer->Display();
 }
 
 Scene::~Scene(){}

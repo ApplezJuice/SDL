@@ -1,6 +1,13 @@
 #pragma once
+#include "Layer.h"
 
-class ImGuiLayer
+class ImGuiLayer : public Layer
 {
+public:
+	ImGuiLayer();
+	~ImGuiLayer();
+
+	void OnUpdate();
+private:
 
 };

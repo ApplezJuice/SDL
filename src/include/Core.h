@@ -1,14 +1,15 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <GL/glew.h>
+#include <SDL2/SDL_opengl.h>
 #include <iostream>
 #include <vector>
 #include "Scene.h"
-#include "RenderWindow.h"
 #include "Entity.h"
 #include "Utility/Log.h"
 
-
+class RenderWindow;
 class Core
 {
 public:
@@ -22,6 +23,7 @@ public:
 	void Events();
 
 	inline bool IsRunning() { return m_IsRunning; }
+	inline std::vector<Scene*> GetActiveScenes() { return m_ActiveScenes; }
 
 private:
 	Core(){};
