@@ -17,6 +17,9 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	m_ImGuiLayer = new ImGuiLayer();
+	PushOverlay(m_ImGuiLayer);
 }
 
 SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
@@ -72,8 +75,13 @@ void RenderWindow::Update()
 	// 	scene->RenderSprites(this);
 	
 	// // Render layers
+	m_ImGuiLayer->Begin();
 	for (Layer* layer : m_LayerStack)
+	{
 		layer->OnUpdate();
+		layer->OnImGuiRender();
+	}
+	m_ImGuiLayer->End();
 
 	glViewport(0, 0, 1280, 720);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

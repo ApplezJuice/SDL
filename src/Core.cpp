@@ -41,7 +41,7 @@ bool Core::Init()
 	LOG_INFO("Renderer: " + std::string((char *)glGetString(GL_RENDERER)));
 	LOG_INFO("Version:  " + std::string((char *)glGetString(GL_VERSION)));
 
-	m_Window->PushOverlay(new ImGuiLayer());
+	//m_Window->PushOverlay(new ImGuiLayer());
 
 	return m_IsRunning;
 }

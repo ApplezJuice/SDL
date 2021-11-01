@@ -12,8 +12,6 @@ ImGuiLayer::~ImGuiLayer()
 
 void ImGuiLayer::OnAttach(RenderWindow* renderer)
 {
-	LOG_INFO("Imgui loading...");
-
 	ImGui::CreateContext();
 
 	// ImGuiIO& io = ImGui::GetIO();
@@ -26,8 +24,6 @@ void ImGuiLayer::OnAttach(RenderWindow* renderer)
 	const char* glsl_version = "#version 430";
 	ImGui_ImplSDL2_InitForOpenGL(renderer->GetWindow(), renderer->GetContext());
     ImGui_ImplOpenGL3_Init(glsl_version);
-
-	LOG_INFO("Imgui Attached...");
 }
 
 void ImGuiLayer::OnDetach()
@@ -37,14 +33,22 @@ void ImGuiLayer::OnDetach()
     ImGui::DestroyContext();
 }
 
-void ImGuiLayer::OnUpdate()
+void ImGuiLayer::Begin()
 {
+	// Begin a new frame
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
+}
 
+void ImGuiLayer::End()
+{
+	ImGui::Render();
+}
+
+void ImGuiLayer::OnImGuiRender()
+{
 	static bool show = true;
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	ImGui::ShowDemoWindow(&show);
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
@@ -58,7 +62,6 @@ void ImGuiLayer::OnUpdate()
 		ImGui::Checkbox("Demo Window", &show);      // Edit bools storing our window open/close state
 
 		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
 		if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 			counter++;
@@ -68,6 +71,4 @@ void ImGuiLayer::OnUpdate()
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::End();
 	}
-
-	ImGui::Render();
 }

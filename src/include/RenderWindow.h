@@ -4,6 +4,7 @@
 #include "LayerStack.h"
 #include "Layer.h"
 
+class ImGuiLayer;
 class RenderWindow
 {
 public:
@@ -25,4 +26,5 @@ private:
 	SDL_Renderer* renderer;
 	LayerStack m_LayerStack;
 	SDL_GLContext context;
+	ImGuiLayer* m_ImGuiLayer;
 };

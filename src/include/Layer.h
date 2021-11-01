@@ -11,6 +11,7 @@ public:
 	virtual void OnAttach(RenderWindow* renderer) {}
 	virtual void OnDetach() {}
 	virtual void OnUpdate() {}
+	virtual void OnImGuiRender() {}
 
 	inline const std::string& GetName() const { return m_DebugName; }
 protected:

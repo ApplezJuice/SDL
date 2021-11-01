@@ -11,9 +11,13 @@ public:
 	ImGuiLayer();
 	~ImGuiLayer();
 
-	void OnAttach(RenderWindow* renderer);
-	void OnDetach();
-	void OnUpdate();
+	virtual void OnAttach(RenderWindow* renderer);
+	virtual void OnDetach();
+	virtual void OnImGuiRender() override;
+
+	void Begin();
+	void End();
+	
 private:
 
 };
