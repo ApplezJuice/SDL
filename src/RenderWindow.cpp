@@ -8,7 +8,6 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
 								width, height, SDL_WINDOW_OPENGL);
 	context = SDL_GL_CreateContext(window);
-	glewExperimental = GL_TRUE;
 
 	if (window == NULL)
 	{
@@ -16,13 +15,6 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-	if (glewInit() != GLEW_OK)
-	{
-		LOG_ERROR( "Failed to inity Glew.");
-	}
-
-	glViewport(0, 0, width, height);
 }
 
 SDL_Texture* RenderWindow::LoadTexture(const char* filePath)

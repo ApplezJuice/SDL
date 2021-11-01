@@ -1,13 +1,14 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <GL/glew.h>
+#include "glad/glad.h"
 #include <SDL2/SDL_opengl.h>
 #include <iostream>
 #include <vector>
 #include "Scene.h"
 #include "Entity.h"
 #include "Utility/Log.h"
+
 
 class RenderWindow;
 class Core

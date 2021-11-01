@@ -9,23 +9,13 @@ bool Core::Init()
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-
-	// if (SDL_Init(SDL_INIT_VIDEO) > 0)
-	// {
-	// 	std::string message = "SDL_Init HAS FAILED. SDL_ERROR: " + std::string(SDL_GetError());
-	// 	LOG_ERROR(message);
-	// }
-	
-
-	// if (!IMG_Init(IMG_INIT_JPG))
-	// {
-	// 	std::string message = "IMG_Init HAS FAILED. IMG_ERROR: " + std::string(SDL_GetError());
-	// 	LOG_ERROR(message);
-	// }
+	// Request an OpenGL 4.5 context (should be core)
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+	// Also request a depth buffer
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
 	m_Window = new RenderWindow("Test Game V0.1", 1280, 720);
 
@@ -38,6 +28,17 @@ bool Core::Init()
 	sprite.texture = m_Window->LoadTexture("resources/gfx/serverdown.png");
 
 	m_IsRunning = true;
+
+	// Check OpenGL properties
+	LOG_INFO("OpenGL loaded");
+	if(!gladLoadGLLoader(SDL_GL_GetProcAddress))
+	{
+		LOG_ERROR("Failed to init GLAD");
+	}
+
+	LOG_INFO("Vendor:   " + std::string((char *)glGetString(GL_VENDOR)));
+	LOG_INFO("Renderer: " + std::string((char *)glGetString(GL_RENDERER)));
+	LOG_INFO("Version:  " + std::string((char *)glGetString(GL_VERSION)));
 
 	return m_IsRunning;
 }
