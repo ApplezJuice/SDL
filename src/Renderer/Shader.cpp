@@ -1,8 +1,6 @@
 #include "Renderer/Shader.h"
 
 #include <glad/glad.h>
-#include <vector>
-#include <Utility/Log.h>
 
 Shader::Shader(const std::string& vertextSrc, const std::string& fragmentSrc)
 {

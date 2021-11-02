@@ -1,6 +1,7 @@
 #pragma once
 
-#include <string>
+#include "mainpch.h"
+#include "Utility/Log.h"
 
 class Shader
 {

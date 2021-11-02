@@ -1,5 +1,4 @@
 #include "RenderWindow.h"
-#include <iostream>
 #include "Core.h"
 
 RenderWindow::RenderWindow(const char* title, int width, int height)

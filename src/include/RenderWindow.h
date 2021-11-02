@@ -3,7 +3,8 @@
 #include <SDL2/SDL_image.h>
 #include "LayerStack.h"
 #include "Layer.h"
-#include <memory>
+#include "mainpch.h"
+#include "Utility/Log.h"
 
 // TEMP
 #include "Renderer/Shader.h"

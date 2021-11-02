@@ -7,9 +7,9 @@
 #include <vector>
 #include "Scene.h"
 #include "Entity.h"
-#include "Utility/Log.h"
 #include "ImGui/ImGuiLayer.h"
-
+#include "mainpch.h"
+#include "Utility/Log.h"
 
 class RenderWindow;
 class Core
