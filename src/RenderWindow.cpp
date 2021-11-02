@@ -48,6 +48,30 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 
 	unsigned int indices[3] = { 0, 1, 2};
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	std::string vertexSrc = R"(
+		#version 330 core
+
+		layout(location = 0) in vec3 a_Position;
+
+		void main()
+		{
+			gl_Position = vec4(a_Position, 1.0);
+		}
+	)";
+
+	std::string fragmentSrc = R"(
+		#version 330 core
+
+		layout(location = 0) out vec4 o_Color;
+
+		void main()
+		{
+			o_Color = vec4(0.8, 0.2, 0.3, 1.0);
+		}
+	)";
+
+	m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 }
 
 SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
@@ -101,13 +125,13 @@ void RenderWindow::Update()
 	// // Render sprites on active scenes
 	// for(auto scene : Core::GetInstance()->GetActiveScenes())
 	// 	scene->RenderSprites(this);
-	glViewport(0, 0, 1280, 720);
+	glViewport(0, 0, 1920, 1080);
 	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	m_Shader->Bind();
 	glBindVertexArray(m_VertextArray);
-	glDrawArrays( GL_TRIANGLES, 0, 3 );
-	//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	
 	// // Render layers
 	m_ImGuiLayer->Begin();

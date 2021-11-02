@@ -3,6 +3,10 @@
 #include <SDL2/SDL_image.h>
 #include "LayerStack.h"
 #include "Layer.h"
+#include <memory>
+
+// TEMP
+#include "Renderer/Shader.h"
 
 class ImGuiLayer;
 class RenderWindow
@@ -28,4 +32,5 @@ private:
 	ImGuiLayer* m_ImGuiLayer;
 
 	unsigned int m_VertextArray, m_VertexBuffer, m_IndexBuffer;
+	std::unique_ptr<Shader> m_Shader;
 };

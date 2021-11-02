@@ -24,7 +24,7 @@ bool Core::Init()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
-	m_Window = new RenderWindow("Test Game V0.1", 1280, 720);
+	m_Window = new RenderWindow("Test Game V0.1", 1920, 1080);
 
 	m_ActiveScenes.push_back(new Scene);
 
