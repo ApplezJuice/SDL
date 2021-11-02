@@ -11,6 +11,11 @@ Testing out SDL2 and Modern OpenGL with GLAD
 ### Building
 
 - Build the sln file with premake5
+
+```
+vendor/premake5.exe vs2019
+```
+
 - Build with g++ / make MinGW64
 
 ```
