@@ -75,11 +75,19 @@ void Core::Events()
 	SDL_Event event;
 	while(SDL_PollEvent(&event))
 	{
-		switch (event.type)
+		//ImGui_ImplSDL2_ProcessEvent(&event);
+		if (event.type == SDL_QUIT)
 		{
-			case SDL_QUIT:
-				m_IsRunning = false;
-				break;
+			LOG_INFO("Exit App");
+			m_IsRunning = false;
+		}
+		
+		if (event.type == SDL_WINDOWEVENT 
+		&& event.window.event == SDL_WINDOWEVENT_CLOSE 
+		&& event.window.windowID == SDL_GetWindowID(m_Window->GetWindow()))
+		{
+			LOG_INFO("Exit App Two");
+			m_IsRunning = false;
 		}
 	}
 }

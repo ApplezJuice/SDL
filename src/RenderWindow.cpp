@@ -138,10 +138,14 @@ void RenderWindow::Update()
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 	
 	// // Render layers
-	m_ImGuiLayer->Begin();
 	for (Layer* layer : m_LayerStack)
 	{
 		layer->OnUpdate();
+	}
+	
+	m_ImGuiLayer->Begin();
+	for (Layer* layer : m_LayerStack)
+	{
 		layer->OnImGuiRender();
 	}
 	m_ImGuiLayer->End();
