@@ -53,8 +53,11 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 
 		layout(location = 0) in vec3 a_Position;
 
+		out vec3 v_Position;
+
 		void main()
 		{
+			v_Position = a_Position;
 			gl_Position = vec4(a_Position, 1.0);
 		}
 	)";
@@ -64,9 +67,11 @@ RenderWindow::RenderWindow(const char* title, int width, int height)
 
 		layout(location = 0) out vec4 o_Color;
 
+		in vec3 v_Position;
+
 		void main()
 		{
-			o_Color = vec4(0.8, 0.2, 0.3, 1.0);
+			o_Color = vec4(v_Position * 0.5 + 0.5, 1.0);
 		}
 	)";
 
