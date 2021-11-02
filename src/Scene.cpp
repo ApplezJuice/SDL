@@ -13,6 +13,7 @@ Entity Scene::CreateEntity(const std::string& name)
 	entity.AddComponent<TransformComponent>();
 	auto& tag = entity.AddComponent<TagComponent>();
 	tag.Tag = name.empty() ? "Entity" : name;
+	LOG_INFO("Created Entity: " + tag.Tag);
 	return entity;
 }
 

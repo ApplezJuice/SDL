@@ -4,6 +4,7 @@
 #include "RenderWindow.h"
 #include "entt.h"
 #include "Components.h"
+#include "Utility/Log.h"
 
 class Entity;
 class Scene

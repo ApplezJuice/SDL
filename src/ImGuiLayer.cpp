@@ -1,4 +1,4 @@
-#include "ImGuiLayer.h"
+#include "ImGui/ImGuiLayer.h"
 
 ImGuiLayer::ImGuiLayer()
 	: Layer("ImGuiLayer")
@@ -44,6 +44,7 @@ void ImGuiLayer::Begin()
 void ImGuiLayer::End()
 {
 	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void ImGuiLayer::OnImGuiRender()

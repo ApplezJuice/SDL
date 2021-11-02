@@ -7,9 +7,15 @@ bool Core::Init()
 	Log::Init();
 	LOG_INFO("Initialized Logger");
 
-	SDL_Init(SDL_INIT_EVERYTHING);
+	//SDL_Init(SDL_INIT_EVERYTHING);
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		LOG_ERROR("Could not init SDL Video");
+	}
 
-	// Request an OpenGL 4.5 context (should be core)
+	SDL_GL_LoadLibrary(NULL);
+
+	// Request an OpenGL 4.6 context (should be core)
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
@@ -29,13 +35,6 @@ bool Core::Init()
 	sprite.texture = m_Window->LoadTexture("resources/gfx/serverdown.png");
 
 	m_IsRunning = true;
-
-	// Check OpenGL properties
-	LOG_INFO("OpenGL loaded");
-	if(!gladLoadGLLoader(SDL_GL_GetProcAddress))
-	{
-		LOG_ERROR("Failed to init GLAD");
-	}
 
 	LOG_INFO("Vendor:   " + std::string((char *)glGetString(GL_VENDOR)));
 	LOG_INFO("Renderer: " + std::string((char *)glGetString(GL_RENDERER)));
@@ -64,6 +63,9 @@ void Core::Quit()
 
 void Core::Update()
 {
+	// Check for Events
+	Events();
+
 	// Render Update
 	m_Window->Update();	
 }

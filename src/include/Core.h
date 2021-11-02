@@ -2,13 +2,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "glad/glad.h"
-#include <SDL2/SDL_opengl.h>
+
 #include <iostream>
 #include <vector>
 #include "Scene.h"
 #include "Entity.h"
 #include "Utility/Log.h"
-#include "ImGuiLayer.h"
+#include "ImGui/ImGuiLayer.h"
 
 
 class RenderWindow;

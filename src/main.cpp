@@ -7,7 +7,6 @@ int main(int argc, char* args[])
 
 	while (Core::GetInstance()->IsRunning())
 	{
-		Core::GetInstance()->Events();
 		Core::GetInstance()->Update();
 	}
 

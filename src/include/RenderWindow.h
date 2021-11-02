@@ -23,8 +23,9 @@ public:
 
 private:
 	SDL_Window* window;
-	SDL_Renderer* renderer;
 	LayerStack m_LayerStack;
 	SDL_GLContext context;
 	ImGuiLayer* m_ImGuiLayer;
+
+	unsigned int m_VertextArray, m_VertexBuffer, m_IndexBuffer;
 };
